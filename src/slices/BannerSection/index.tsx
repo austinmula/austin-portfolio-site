@@ -4,6 +4,7 @@ import { SliceComponentProps } from "@prismicio/react";
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import Bounded from "@/components/Bounded";
+import { Models } from "./Models";
 
 /**
  * Props for `BannerSection`.
@@ -74,6 +75,7 @@ const BannerSection = ({ slice }: BannerSectionProps): JSX.Element => {
       ref={component}
     >
       <div className="grid min-h-[70vh] grid-cols-1 items-center md:grid-cols-2">
+        <Models />
         <div className="col-start-1 md:row-start-1 " data-speed=".2">
           <h1
             className="mb-8 text-[clamp(3rem,20vmin,20rem)] font-extrabold leading-none tracking-tighter"
