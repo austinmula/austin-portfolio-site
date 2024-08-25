@@ -3,6 +3,7 @@ import { Content, KeyTextField } from "@prismicio/client";
 import { SliceComponentProps } from "@prismicio/react";
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
+import Bounded from "@/components/Bounded";
 
 /**
  * Props for `BannerSection`.
@@ -67,7 +68,7 @@ const BannerSection = ({ slice }: BannerSectionProps): JSX.Element => {
   };
 
   return (
-    <section
+    <Bounded
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
       ref={component}
@@ -92,7 +93,7 @@ const BannerSection = ({ slice }: BannerSectionProps): JSX.Element => {
           </span>
         </div>
       </div>
-    </section>
+    </Bounded>
   );
 };
 
