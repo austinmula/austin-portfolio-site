@@ -1,0 +1,49 @@
+{
+  "id": "tools",
+  "type": "SharedSlice",
+  "name": "Tools",
+  "description": "Tools",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "heading": {
+          "type": "Text",
+          "config": {
+            "label": "Heading",
+            "placeholder": ""
+          }
+        },
+        "items": {
+          "type": "Group",
+          "config": {
+            "label": "items",
+            "repeat": true,
+            "fields": {
+              "tool_color": {
+                "type": "Color",
+                "config": {
+                  "label": "Tool Color",
+                  "placeholder": ""
+                }
+              },
+              "tool_name": {
+                "type": "Text",
+                "config": {
+                  "label": "Tool Name",
+                  "placeholder": ""
+                }
+              }
+            }
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}
