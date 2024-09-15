@@ -82,67 +82,12 @@ export type HomepageDocument<Lang extends string = string> =
     Lang
   >;
 
-type PageDocumentDataSlicesSlice = AboutMeSlice;
+type PageDocumentDataSlicesSlice = ToolsSlice | AboutMeSlice;
 
 /**
  * Content for Page documents
  */
 interface PageDocumentData {
-  /**
-   * Heading field in *Page*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: page.heading
-   * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#key-text
-   */
-  heading: prismic.KeyTextField;
-
-  /**
-   * Description field in *Page*
-   *
-   * - **Field Type**: Rich Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: page.description
-   * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
-   */
-  description: prismic.RichTextField;
-
-  /**
-   * Button Text field in *Page*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: page.button_text
-   * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#key-text
-   */
-  button_text: prismic.KeyTextField;
-
-  /**
-   * Button Link field in *Page*
-   *
-   * - **Field Type**: Link
-   * - **Placeholder**: *None*
-   * - **API ID Path**: page.button_link
-   * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
-   */
-  button_link: prismic.LinkField;
-
-  /**
-   * Avatar field in *Page*
-   *
-   * - **Field Type**: Image
-   * - **Placeholder**: *None*
-   * - **API ID Path**: page.avatar
-   * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#image
-   */
-  avatar: prismic.ImageField<never>;
-
   /**
    * Slice Zone field in *Page*
    *
@@ -358,6 +303,61 @@ export type AllDocumentTypes =
   | SettingsDocument;
 
 /**
+ * Primary content in *AboutMe → Default → Primary*
+ */
+export interface AboutMeSliceDefaultPrimary {
+  /**
+   * Heading field in *AboutMe → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: about_me.default.primary.heading
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  heading: prismic.KeyTextField;
+
+  /**
+   * Description field in *AboutMe → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: about_me.default.primary.description
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  description: prismic.RichTextField;
+
+  /**
+   * Button Text field in *AboutMe → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: about_me.default.primary.button_text
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  button_text: prismic.KeyTextField;
+
+  /**
+   * Button Link field in *AboutMe → Default → Primary*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: about_me.default.primary.button_link
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  button_link: prismic.LinkField;
+
+  /**
+   * Avatar field in *AboutMe → Default → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: about_me.default.primary.avatar
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  avatar: prismic.ImageField<never>;
+}
+
+/**
  * Default variation for AboutMe Slice
  *
  * - **API ID**: `default`
@@ -366,7 +366,7 @@ export type AllDocumentTypes =
  */
 export type AboutMeSliceDefault = prismic.SharedSliceVariation<
   "default",
-  Record<string, never>,
+  Simplify<AboutMeSliceDefaultPrimary>,
   never
 >;
 
@@ -452,6 +452,83 @@ export type BannerSectionSlice = prismic.SharedSlice<
   BannerSectionSliceVariation
 >;
 
+/**
+ * Item in *Tools → Default → Primary → items*
+ */
+export interface ToolsSliceDefaultPrimaryItemsItem {
+  /**
+   * Tool Color field in *Tools → Default → Primary → items*
+   *
+   * - **Field Type**: Color
+   * - **Placeholder**: *None*
+   * - **API ID Path**: tools.default.primary.items[].tool_color
+   * - **Documentation**: https://prismic.io/docs/field#color
+   */
+  tool_color: prismic.ColorField;
+
+  /**
+   * Tool Name field in *Tools → Default → Primary → items*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: tools.default.primary.items[].tool_name
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  tool_name: prismic.KeyTextField;
+}
+
+/**
+ * Primary content in *Tools → Default → Primary*
+ */
+export interface ToolsSliceDefaultPrimary {
+  /**
+   * Heading field in *Tools → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: tools.default.primary.heading
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  heading: prismic.KeyTextField;
+
+  /**
+   * items field in *Tools → Default → Primary*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: tools.default.primary.items[]
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  items: prismic.GroupField<Simplify<ToolsSliceDefaultPrimaryItemsItem>>;
+}
+
+/**
+ * Default variation for Tools Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type ToolsSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<ToolsSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *Tools*
+ */
+type ToolsSliceVariation = ToolsSliceDefault;
+
+/**
+ * Tools Shared Slice
+ *
+ * - **API ID**: `tools`
+ * - **Description**: Tools
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type ToolsSlice = prismic.SharedSlice<"tools", ToolsSliceVariation>;
+
 declare module "@prismicio/client" {
   interface CreateClient {
     (
@@ -474,12 +551,18 @@ declare module "@prismicio/client" {
       SettingsDocumentDataNavItemItem,
       AllDocumentTypes,
       AboutMeSlice,
+      AboutMeSliceDefaultPrimary,
       AboutMeSliceVariation,
       AboutMeSliceDefault,
       BannerSectionSlice,
       BannerSectionSliceDefaultPrimary,
       BannerSectionSliceVariation,
       BannerSectionSliceDefault,
+      ToolsSlice,
+      ToolsSliceDefaultPrimaryItemsItem,
+      ToolsSliceDefaultPrimary,
+      ToolsSliceVariation,
+      ToolsSliceDefault,
     };
   }
 }
