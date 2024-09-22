@@ -1,7 +1,7 @@
 {
   "format": "page",
-  "id": "page",
-  "label": "Page",
+  "id": "project",
+  "label": "Project",
   "repeatable": true,
   "status": true,
   "json": {
@@ -12,18 +12,34 @@
           "label": "UID"
         }
       },
+      "title": {
+        "type": "Text",
+        "config": {
+          "label": "Title",
+          "placeholder": ""
+        }
+      },
+      "hover_image": {
+        "type": "Image",
+        "config": {
+          "label": "Hover Image",
+          "constraint": {},
+          "thumbnails": []
+        }
+      },
+      "date": {
+        "type": "Date",
+        "config": {
+          "label": "Date",
+          "placeholder": ""
+        }
+      },
       "slices": {
         "type": "Slices",
         "fieldset": "Slice Zone",
         "config": {
           "choices": {
-            "content_index": {
-              "type": "SharedSlice"
-            },
-            "tools": {
-              "type": "SharedSlice"
-            },
-            "about_me": {
+            "text_block": {
               "type": "SharedSlice"
             }
           }
