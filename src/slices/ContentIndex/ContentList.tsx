@@ -143,20 +143,22 @@ export default function ContentList({
         {items.map((post, index) => (
           <li
             key={index}
-            ref={(el) => (itemsRef.current[index] = el)}
+            ref={(el) => {
+              itemsRef.current[index] = el;
+            }}
             onMouseEnter={() => onMouseEnter(index)}
             className="list-item opacity-0"
           >
             <a
               href={`${urlPrefix}/${post.uid}`}
-              className="flex flex-col justify-between border-t border-t-slate-100 py-10  text-slate-200 md:flex-row "
+              className="flex flex-col justify-between border-t border-t-slate-100 py-10 text-slate-200 md:flex-row"
               aria-label={post.data.title || ""}
             >
               <div className="flex flex-col">
                 <span className="text-3xl font-bold">{post.data.title}</span>
                 <div className="flex gap-3 text-yellow-400">
-                  {post.tags.map((tag, index) => (
-                    <span key={index} className="text-lg font-bold">
+                  {post.tags.map((tag, tagIndex) => (
+                    <span key={tagIndex} className="text-lg font-bold">
                       {tag}
                     </span>
                   ))}
